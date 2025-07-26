@@ -198,3 +198,6 @@ results/
 
 # Data folder
 data/
+
+# PDFs
+*.pdf
