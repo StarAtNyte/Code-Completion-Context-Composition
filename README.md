@@ -1,13 +1,7 @@
-# SOTA Context Collection Framework
+# Code Completion Context Framework
 
-A state-of-the-art context collection system for the Code Completion Competition, built with Modal Labs for scalable cloud processing.
+An intelligent context retrieval system that enhances code completion by collecting and composing relevant code snippets from entire codebases. The framework uses advanced ranking algorithms (BM25, semantic embeddings) to identify the most contextually relevant files and code segments, helping language models generate more accurate code completions. Built with Modal Labs for scalable cloud processing of large repositories.
 
-## Competition Results
-
-- **247/247 datapoints processed** successfully (100% success rate)
-- **Perfect format validation** - No issues found
-- **Average context length**: 5,820 characters
-- **Processing time**: 5 minutes 38 seconds for full dataset
 
 ## Quick Start
 
@@ -45,26 +39,26 @@ modal run src/core.py --action generate --stage public --language python --batch
 ### 5. Download Results
 
 ```bash
-modal volume get code-completion-data /python-public-sota-submission-*.jsonl ./
+modal volume get code-completion-data /python-public-submission-*.jsonl ./
 ```
 
 ## Project Structure
 
 ```
-ase2025-starter-kit/
+code-completion/
 ├── src/
 │   ├── __init__.py          # Package initialization
 │   ├── config.py            # Configuration settings
-│   ├── core.py              # Main SOTA framework
+│   ├── core.py              # Main context framework
 │   └── utils.py             # Utility functions
 ├── data/                    # Competition data (local)
 ├── docs/                    # Documentation
 ├── README.md                # This file
 ├── pyproject.toml           # Python dependencies
-└── python-public-sota-submission.jsonl  # Generated submission
+└── python-public-submission.jsonl  # Generated submission
 ```
 
-## SOTA Framework Features
+## Framework Features
 
 ### Advanced Retrieval Pipeline
 - **Enhanced BM25**: Code-aware tokenization and scoring
@@ -78,10 +72,10 @@ ase2025-starter-kit/
 - **Caching System**: Persistent storage for embeddings and analyses
 - **Error Handling**: Robust fallbacks ensure 100% success rate
 
-### Competition Compliance
+### Format Compliance
 - **Format Validation**: Automatic JSONL format checking
 - **Token Limits**: Respects model context windows (8K-16K tokens)
-- **File Separators**: Uses competition-required `<|file_sep|>` tokens
+- **File Separators**: Uses standard `<|file_sep|>` tokens
 
 ## Available Commands
 
@@ -113,57 +107,3 @@ Edit `src/config.py` to customize:
 - **Model settings**: Context windows, weights
 - **Retrieval parameters**: Candidate limits, scoring weights
 - **Modal configuration**: Memory, timeouts, dependencies
-
-## Performance Metrics
-
-| Metric | Value |
-|--------|-------|
-| Success Rate | 100% (247/247) |
-| Average Context Length | 5,820 characters |
-| Processing Speed | 1.37 seconds/datapoint |
-| Context Range | 2,158 - 6,181 characters |
-| Total Processing Time | 5 minutes 38 seconds |
-
-## 🏅 Competition Submission
-
-1. **Generate**: Run the SOTA framework on competition data
-2. **Validate**: Ensure format compliance and quality
-3. **Download**: Get the submission file locally
-4. **Submit**: Upload to [competition platform](https://eval.ai/web/challenges/challenge-page/2516)
-
-## 🔧 Development
-
-### Local Testing
-```bash
-# Test components locally (limited functionality)
-python quick_test.py
-```
-
-### Adding Features
-1. Update configuration in `src/config.py`
-2. Implement new retrieval methods in `src/core.py`
-3. Add utilities in `src/utils.py`
-4. Test with small batches before full runs
-
-## Expected Performance
-
-Based on research and baseline analysis:
-- **vs Random Baseline**: +15-20% ChrF score improvement
-- **vs BM25 Baseline**: +8-12% ChrF score improvement
-- **Target ChrF Score**: >0.75 across all models
-
-## Contributing
-
-1. Keep code organized in the `src/` directory
-2. Update configuration in `config.py` for new settings
-3. Add comprehensive logging for debugging
-4. Test with small batches before full runs
-5. Document new features in this README
-
-## License
-
-MIT License - See competition rules for submission guidelines.
-
----
-
-**Ready to win the competition!**
